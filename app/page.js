@@ -1,12 +1,14 @@
-import Image from "next/image";
-import Link from "next/link"
 import ImageSlideShow from "@/component/image-slideshow";
+import Cards from "@/component/cards";
 
 export default function Home() {
   return (
-    <div>
-    
-    <ImageSlideShow></ImageSlideShow>
-  </div>
+    <div className="flex flex-col min-h-screen">
+      <main>
+      <ImageSlideShow></ImageSlideShow>
+      <Cards></Cards>
+      </main>
+     
+    </div>
   );
 }

@@ -23,7 +23,7 @@ export default function Menu(){
   return (
     <>
     <div className="w-full mb-32">
-    <h1 className="mx-auto mt-12 text-center text-2xl font-semibold">Our Menu</h1> 
+    <h1 className="mx-auto mt-12 text-center text-2xl font-semibold text-red-700">Our Menu</h1> 
     <ul className="w-full container mx-auto grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 lg:gap-6 gap-5 mt-14 lg:pl-14 pl-20">
         {menuItems.map((item, index) => (
           <li
@@ -36,7 +36,7 @@ export default function Menu(){
               alt={item.name}
             />
             <Link
-              className="text-sm md:text-lg font-medium text-blue-600 hover:underline"
+              className="text-sm md:text-lg font-medium text-black hover:underline"
               href={item.link}
             >
               {item.name}

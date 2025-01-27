@@ -16,7 +16,7 @@ import Wings from "@/assets/wings.png";
 import Desserts from "@/assets/desserts.png.jpg";
 import Deals from "@/assets/deals.png.jpg";
 
-export default function Drinks() {
+export default function Drink() {
   const [showFullMenu, setShowFullMenu] = useState(false);
     const handleMenuBtn=()=>{
       setShowFullMenu(!showFullMenu)
@@ -48,7 +48,7 @@ export default function Drinks() {
       <div className="w-full mb-32 flex flex-col lg:flex-row">
         {/* Sidebar Menu for Larger Screens */}
         <div className="hidden lg:block w-full lg:w-1/4 bg-white p-6 border-2 border-black mt-10 ml-14">
-          <h2 className="mx-auto mb-8 text-center text-2xl font-semibold">Full Menu</h2>
+          <h2 className="mx-auto mb-8 text-center text-2xl font-semibold text-red-700">Full Menu</h2>
           <ul className="space-y-2 text-center">
             {fullMenu.map((item, index) => (
               <li
@@ -61,7 +61,7 @@ export default function Drinks() {
                   alt={item.name}
                 />
                 <Link
-                  className="text-sm md:text-base font-medium text-blue-600 hover:text-blue-600"
+                  className="text-sm md:text-base font-medium text-black"
                   href={item.link}
                 >
                   {item.name}
@@ -84,7 +84,7 @@ export default function Drinks() {
         {/* Full Menu for Small Screens */}
         {showFullMenu && (
           <div className="w-3/4 sm:w-1/2 block lg:hidden bg-white mx-auto border-2 py-5 border-black mt-6">
-            <h2 className="text-center text-2xl font-semibold mb-6">Full Menu</h2>
+            <h2 className="text-center text-2xl font-semibold mb-6 text-red-700">Full Menu</h2>
             <ul className="space-y-2 text-center">
               {fullMenu.map((item, index) => (
                 <li
@@ -97,7 +97,7 @@ export default function Drinks() {
                     alt={item.name}
                   />
                   <Link
-                    className="text-sm md:text-base font-medium text-blue-600 hover:text-blue-500"
+                    className="text-sm md:text-base font-medium text-black"
                     href={item.link}
                   >
                     {item.name}
@@ -110,7 +110,7 @@ export default function Drinks() {
 
         {/* Main Menu Grid */}
         <div className="w-full lg:w-3/4">
-          <h1 className="mx-auto mt-12 text-center text-2xl font-semibold">Our Menu</h1>
+          <h1 className="mx-auto mt-12 text-center text-2xl font-semibold text-red-700">Our Menu</h1>
           <ul className="w-full container mx-auto grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-12 mt-14 px-6">
             {menuItems.map((item, index) => (
               <li
@@ -123,7 +123,7 @@ export default function Drinks() {
                   alt={item.name}
                 />
                 <Link
-                  className="text-sm md:text-lg font-medium text-blue-600 hover:underline"
+                  className="text-sm md:text-lg font-medium text-black hover:underline"
                   href={item.link}
                 >
                   {item.name}

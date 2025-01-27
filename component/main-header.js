@@ -16,6 +16,8 @@ export default function Navbar() {
     }
 
     return (
+        <>
+    
         <header className="bg-yellow-600 text-white shadow-lg font-mono">
             <div className="container mx-auto flex items-center justify-between font-medium p-4">
                 {/* Logo */}
@@ -40,27 +42,31 @@ export default function Navbar() {
                 <nav
                     className={`md:flex md:items-center md:space-x-14 ${
                         isOpen ? "block" : "hidden"
-                    } absolute md:static top-16 left-0 w-full md:w-auto bg-yellow-600 md:bg-transparent shadow-lg md:shadow-none`}
+                    } absolute md:static top-16 left-0 w-full h-1/2 md:w-auto bg-yellow-600 md:bg-transparent shadow-lg md:shadow-none z-50`}
                 >
                     <ul className="md:flex md:space-x-6 text-center py-5 md:text-left">
-                        <li className="p-2">
+                        <li className="p-4">
                             <Link  href="/" onClick={closeMenu}>Home</Link>
                         </li>
-                        <li className="p-2">
+                        <li className="p-4">
                             <Link href="/menu" onClick={closeMenu}>Menu</Link>
                         </li>
-                        <li className="p-2">
+                        <li className="p-4">
                             <Link href="/about" onClick={closeMenu}>About Our Food</Link>
                         </li>
-                        <li className="p-2">
+                        <li className="p-4">
                             <Link href="/search" onClick={closeMenu}>Search</Link>
                         </li>
-                        <li className="p-2">
+                        <li className="p-4">
                             <Link href="/contact" onClick={closeMenu}>Contact</Link>
                         </li>
                     </ul>
                 </nav>
             </div>
         </header>
+
+       
+        
+        </>
     );
 }
