@@ -15,7 +15,7 @@ import Wings from "@/assets/wings.png";
 import Desserts from "@/assets/desserts.png.jpg";
 import Deals from "@/assets/deals.png.jpg";
 
-export default function Wings() {
+export default function Wing() {
   const [showFullMenu, setShowFullMenu] = useState(false);
     const handleMenuBtn=()=>{
       setShowFullMenu(!showFullMenu)

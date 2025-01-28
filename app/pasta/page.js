@@ -1,9 +1,9 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
-import linguine from "@/assets/pasta/linguine.png.jpg"
-import penne  from "@/assets/pasta/penne.png.jpg"
-import spaghetti  from "@/assets/pasta/spaghetti.png.jpg"
+import linguinepasta from "@/assets/pasta/linguine.png.jpg"
+import pennepasta  from "@/assets/pasta/penne.png.jpg"
+import spaghettipasta  from "@/assets/pasta/spaghetti.png.jpg"
 import Burgers from "@/assets/burger.png";
 import Coffee from "@/assets/coffee.png.jpg";
 import Drinks from "@/assets/drinks.png.jpg";
@@ -33,9 +33,9 @@ export default function Pasta() {
   ];
 
   const menuItems = [
-    { name: "Spaghetti", image: spaghetti.src, link: "/spaghetti" },
-    { name: "Penne", image: penne.src, link: "/penne" },
-    { name: "Linguine", image: linguine.src, link: "/linguine" },
+    { name: "Spaghetti", image: spaghettipasta.src, link: "/spaghetti" },
+    { name: "Penne", image: pennepasta.src, link: "/penne" },
+    { name: "Linguine", image: linguinepasta.src, link: "/linguine" },
     
   ];
 
