@@ -30,6 +30,17 @@ import bakedchickenwings from "@/assets/wings/bakedchickenwings.png.jpg";
 import BBQwings from "@/assets/wings/BBQwings.png.jpg";
 import heartchickenwings from "@/assets/wings/heartchickenwings.png.jpg";
 import koreanhotwings from "@/assets/wings/koreanhotwings.png.jpg";
+import CheeseCake from "@/assets/desserts/Cheesecake.png.jpg";
+import ClassicChocolateBrownies from "@/assets/desserts/ClassicChocolateBrownies.png.jpg";
+import Donuts from "@/assets/desserts/Donuts.png.jpg";
+import RedVelvetBrownies from "@/assets/desserts/RedVelvetBrownies.png.jpg";
+import VanillaCupcakes from "@/assets/desserts/VanillaCupcakes.png.jpg";
+import Cappuccino from "@/assets/coffee/Cappuccino.png.jpg";
+import CaramelIcedLatte from "@/assets/coffee/CaramelIcedLatte.png.jpg";
+import ChocolateFrappe from "@/assets/coffee/ChocolateFrappe.png.jpg";
+import ColdCoffee from "@/assets/coffee/ColdCoffee.png.jpg";
+import deal1 from "@/assets/deal/deal1.png.jpg"
+import deal3 from "@/assets/deal/deal3.png.jpg"
 import searchimg from "@/assets/search.png";
 
 export default function Search(){
@@ -42,7 +53,7 @@ export default function Search(){
       description: "Juicy beef patty with toppings",
       image: beefburger,
       buttonText: "Learn More",
-      link: "/burger",
+      link: "/menu/burgers",
     },
     {
       id: 2,
@@ -51,7 +62,7 @@ export default function Search(){
       description: "Grilled chicken patty with toppings",
       image: chickenburger,
       buttonText: "Learn More",
-      link: "/burger",
+      link: "/menu/burgers",
     },
     {
       id: 3,
@@ -60,7 +71,7 @@ export default function Search(){
       description: "Crispy fish patty with tartar sauce",
       image: fishburger,
       buttonText: "Learn More",
-      link: "/burger",
+      link: "/menu/burgers",
     },
     {
       id: 4,
@@ -69,7 +80,7 @@ export default function Search(){
       description: "Spicy grilled chicken patty",
       image: spicychickenburger,
       buttonText: "Learn More",
-      link: "/burger",
+      link: "/menu/burgers",
     },
     {
       id: 5,
@@ -78,7 +89,7 @@ export default function Search(){
       description: "Plant-based patty with fresh veggies",
       image: veggieburger,
       buttonText: "Learn More",
-      link: "/burger",
+      link: "/menu/burgers",
     },
     {
       id: 6,
@@ -87,7 +98,7 @@ export default function Search(){
       description: "Crispy chicken patty with zinger sauce",
       image: zingerburger,
       buttonText: "Learn More",
-      link: "/burger",
+      link: "/menu/burgers",
     },
   
     // Pizzas
@@ -98,7 +109,7 @@ export default function Search(){
       description: "Loaded with chicken fajita and veggies",
       image: chikenfajitapizza,
       buttonText: "Learn More",
-      link: "/pizza",
+      link: "/menu/pizzas",
     },
     {
       id: 8,
@@ -107,7 +118,7 @@ export default function Search(){
       description: "Spicy chicken tikka toppings",
       image: chickentikkapizza,
       buttonText: "Learn More",
-      link: "/pizza",
+      link: "/menu/pizzas",
     },
     {
       id: 9,
@@ -116,7 +127,7 @@ export default function Search(){
       description: "Mozzarella, cheddar, parmesan, and gouda cheese",
       image: fourcheesepizza,
       buttonText: "Learn More",
-      link: "/pizza",
+      link: "/menu/pizzas",
     },
     {
       id: 10,
@@ -125,7 +136,7 @@ export default function Search(){
       description: "Classic cheese and tomato base",
       image: margheritapizza,
       buttonText: "Learn More",
-      link: "/pizza",
+      link: "/menu/pizzas",
     },
     {
       id: 11,
@@ -134,7 +145,7 @@ export default function Search(){
       description: "Topped with fresh vegetables",
       image: veggiesupremepizza,
       buttonText: "Learn More",
-      link: "/pizza",
+      link: "/menu/pizzas",
     },
     {
       id: 12,
@@ -143,7 +154,7 @@ export default function Search(){
       description: "Loaded with spicy beef toppings",
       image: spicybeefpizza,
       buttonText: "Learn More",
-      link: "/pizza",
+      link: "/menu/pizzas",
     },
     {
       id: 13,
@@ -152,7 +163,7 @@ export default function Search(){
       description: "Topped with pepperoni slices",
       image: pepperonipizza,
       buttonText: "Learn More",
-      link: "/pizza",
+      link: "/menu/pizzas",
     },
   
     // Pasta
@@ -163,7 +174,7 @@ export default function Search(){
       description: "Linguine with creamy Alfredo sauce",
       image: linguinepasta,
       buttonText: "Learn More",
-      link: "/pasta",
+      link: "/menu/pasta",
     },
     {
       id: 15,
@@ -172,7 +183,7 @@ export default function Search(){
       description: "Penne pasta with tomato basil sauce",
       image: pennepasta,
       buttonText: "Learn More",
-      link: "/pasta",
+      link: "/menu/pasta",
     },
     {
       id: 16,
@@ -181,7 +192,7 @@ export default function Search(){
       description: "Classic spaghetti with meatballs",
       image: spaghettipasta,
       buttonText: "Learn More",
-      link: "/pasta",
+      link: "/menu/pasta",
     },
   
     // Fries
@@ -192,7 +203,7 @@ export default function Search(){
       description: "Fries topped with cheese and toppings",
       image: loadedfries,
       buttonText: "Learn More",
-      link: "/fries",
+      link: "/menu/fries",
     },
     {
       id: 18,
@@ -201,7 +212,7 @@ export default function Search(){
       description: "Thick-cut fries with seasoning",
       image: steakfries,
       buttonText: "Learn More",
-      link: "/fries",
+      link: "/menu/fries",
     },
     {
       id: 19,
@@ -210,7 +221,7 @@ export default function Search(){
       description: "Sweet and crispy sweet potato fries",
       image: sweetpotatofries,
       buttonText: "Learn More",
-      link: "/fries",
+      link: "/menu/fries",
     },
   
     // Drinks
@@ -221,7 +232,7 @@ export default function Search(){
       description: "Refreshing lemon-lime soda",
       image: spritecan,
       buttonText: "Learn More",
-      link: "/drinks",
+      link: "/menu/drinks",
     },
     {
       id: 21,
@@ -230,7 +241,7 @@ export default function Search(){
       description: "Classic Coca Cola soda",
       image: cocacolacan,
       buttonText: "Learn More",
-      link: "/drinks",
+      link: "/menu/drinks",
     },
     {
       id: 22,
@@ -239,7 +250,7 @@ export default function Search(){
       description: "Sweet and fruity orange soda",
       image: fantacan,
       buttonText: "Learn More",
-      link: "/drinks",
+      link: "/menu/drinks",
     },
     {
       id: 23,
@@ -248,7 +259,7 @@ export default function Search(){
       description: "Crisp and refreshing cola drink",
       image: pepsican,
       buttonText: "Learn More",
-      link: "/drinks",
+      link: "/menu/drinks",
     },
     {
       id: 24,
@@ -257,7 +268,7 @@ export default function Search(){
       description: "Pure and refreshing water",
       image: waterbottle,
       buttonText: "Learn More",
-      link: "/drinks",
+      link: "/menu/drinks",
     },
   
     // Wings
@@ -268,7 +279,7 @@ export default function Search(){
       description: "Crispy and flavorful baked wings",
       image: bakedchickenwings,
       buttonText: "Learn More",
-      link: "/wings",
+      link: "/menu/wings",
     },
     {
       id: 26,
@@ -277,7 +288,7 @@ export default function Search(){
       description: "Smoky and tangy BBQ sauce wings",
       image: BBQwings,
       buttonText: "Learn More",
-      link: "/wings",
+      link: "/menu/wings",
     },
     {
       id: 27,
@@ -286,7 +297,7 @@ export default function Search(){
       description: "Special heart-shaped wings",
       image: heartchickenwings,
       buttonText: "Learn More",
-      link: "/wings",
+      link: "/menu/wings",
     },
     {
       id: 28,
@@ -295,8 +306,108 @@ export default function Search(){
       description: "Spicy and sweet Korean-style wings",
       image: koreanhotwings,
       buttonText: "Learn More",
-      link: "/wings",
+      link: "/menu/wings",
     },
+      {
+        id: 29,
+        name: "Cheesecake",
+        category: "Desserts",
+        description: "Creamy cheesecake with a buttery crust and rich topping",
+        image: CheeseCake,
+        buttonText: "Learn More",
+        link: "/menu/desserts",
+      },
+      {
+        id: 30,
+        name: "Classic Chocolate Brownies",
+        category: "Desserts",
+        description: "Fudgy chocolate brownies with a rich cocoa flavor",
+        image: ClassicChocolateBrownies,
+        buttonText: "Learn More",
+        link: "/menu/desserts",
+      },
+      {
+        id: 31,
+        name: "Donuts",
+        category: "Desserts",
+        description: "Soft, fluffy donuts with a sweet glaze and toppings",
+        image: Donuts,
+        buttonText: "Learn More",
+        link: "/menu/desserts",
+      },
+      {
+        id: 32,
+        name: "Red Velvet Brownies",
+        category: "Desserts",
+        description: "Delicious red velvet brownies with a cream cheese swirl",
+        image: RedVelvetBrownies,
+        buttonText: "Learn More",
+        link: "/menu/desserts",
+      },
+      {
+        id: 33,
+        name: "Vanilla Cupcakes",
+        category: "Desserts",
+        description: "Soft vanilla cupcakes topped with fluffy buttercream frosting",
+        image: VanillaCupcakes,
+        buttonText: "Learn More",
+        link: "/menu/desserts",
+      },
+      {
+        id: 34,
+        name: "Cappuccino",
+        category: "Coffee",
+        description: "Rich espresso with steamed milk and a layer of foam",
+        image: Cappuccino,
+        buttonText: "Learn More",
+        link: "/menu/coffee",
+      },
+      {
+        id: 35,
+        name: "Caramel Iced Latte",
+        category: "Coffee",
+        description: "Smooth espresso with caramel syrup and chilled milk over ice",
+        image: CaramelIcedLatte,
+        buttonText: "Learn More",
+        link: "/menu/coffee",
+      },
+      {
+        id: 36,
+        name: "Chocolate Frappe",
+        category: "Coffee",
+        description: "Blended iced coffee with rich chocolate and whipped cream",
+        image: ChocolateFrappe,
+        buttonText: "Learn More",
+        link: "/menu/coffee",
+      },
+      {
+        id: 37,
+        name: "Cold Coffee",
+        category: "Coffee",
+        description: "Refreshing iced coffee with milk and a hint of sweetness",
+        image: ColdCoffee,
+        buttonText: "Learn More",
+        link: "/menu/coffee",
+      },
+      {
+        id: 38,
+        name: "Family Feast Combo",
+        category: "Deals",
+        description: "A family deal with two burgers, large fries, pasta, and two drinks",
+        image: deal1,
+        buttonText: "Learn More",
+        link: "/menu/deals",
+      },
+      {
+        id: 39,
+        name: "Classic Burger Combo",
+        category: "Deals",
+        description: "A delicious combo of a burger, fries",
+        image: deal3,
+        buttonText: "Learn More",
+        link: "/menu/deals",
+      },
+  
   ];
   
   

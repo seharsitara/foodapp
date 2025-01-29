@@ -8,9 +8,9 @@ import cardcoffee from "@/assets/cards/cardcoffee.png"
 
 export default function Cards(){
   const cardItems=[
-    {Image: cardcoffee.src, header:"Coffee", para:"Experience the rich aroma and bold flavor of our freshly brewed coffee.",button:"Order Now",link:"/coffee"},
+    {Image: cardcoffee.src, header:"Coffee", para:"Experience the rich aroma and bold flavor of our freshly brewed coffee.",button:"Order Now",link:"/menu/coffee"},
     {Image: cardmenu.src, header:"Our Menu", para:"Explore our diverse menu, crafted to satisfy every craving with a variety of delicious options.",button:"Order Now",link:"/menu"},
-    {Image: carddesserts.src, header:"Desserts", para:"Treat yourself to our delightful desserts, a perfect way to end your meal on a sweet note.",button:"Order Now", link:"/dessert"},
+    {Image: carddesserts.src, header:"Desserts", para:"Treat yourself to our delightful desserts, a perfect way to end your meal on a sweet note.",button:"Order Now", link:"/menu/desserts"},
     {Image: cardaboutourfood.src, header:"About Our Food", para:"Enjoy the perfect mix of taste and quality with our expertly crafted dishes.",button:"Learn More", link:"/about"},
     {Image: cardfororderfood.src, header:"Order Food", para:"Order your favorite meals quickly and enjoy fresh, delicious food delivered to you.",button:"Order Now" ,link:"/orderfood"},
 
