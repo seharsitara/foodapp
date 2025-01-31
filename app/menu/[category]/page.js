@@ -431,7 +431,7 @@ const fullMenu = [
               <h3 className="text-xl font-semibold text-center"><Link href={`/menu/${category}/${item.id}`}>{item.name}</Link></h3>
               <div className="flex justify-between md:gap-6 lg:gap-0 w-full mt-10">
               <p className="lg:text-lg text-sm font-semibold text-gray-700 mt-2">PKR {item.price}</p>
-              <button className="bg-yellow-600 px-4 py-2 rounded-lg"><Link href="/order-form">Order</Link></button>
+              <button className="bg-yellow-600 px-4 py-2 rounded-lg"><Link href="/orderform">Add To Basket</Link></button>
               </div>
               </div>
           ))}

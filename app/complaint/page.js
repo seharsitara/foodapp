@@ -142,7 +142,7 @@ export default function Complaint() {
           {error.message && <p className="pt-2 text-red-500">{error.message}</p>}
         </div>
       
-      <div className="flex justify-center items-center mt-16">
+      <div className="flex justify-center items-center my-16">
         <button
           type="submit"
           className="bg-yellow-600 p-4 text-xl font-medium rounded-lg"

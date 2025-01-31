@@ -2,12 +2,13 @@
 import { useState } from "react";
 import React from "react";
 
-export default function Suggestion() {
+export default function Complaint() {
   const [dataForm, setDataForm] = useState({
     name: "",
     email: "",
     phone: "",
-    message: "",
+    city: "",
+    address:"",
   });
 
   const [error, setError] = useState({
@@ -15,6 +16,8 @@ export default function Suggestion() {
     email: "",
     phone: "",
     message: "",
+    city:"",
+    address:"",
   });
 
   const handleSubmit = (e) => {
@@ -36,10 +39,14 @@ export default function Suggestion() {
       newErrors.phone = "Please enter a valid phone number.";
     }
 
-    if (dataForm.message.trim() === "") {
-      newErrors.message = "Feedback cannot be empty.";
+    if (!dataForm.city.toLowerCase().includes("lahore","Islamabad","karachi")){
+      newErrors.city="please enter valid city"
     }
-
+   
+    if (!dataForm.address || dataForm.address.length < 10) {
+      newErrors.address = "Please enter a valid address.";
+    }
+    
     // If errors exist, update the error state and stop submission
     if (Object.keys(newErrors).length > 0) {
       setError(newErrors);
@@ -47,8 +54,8 @@ export default function Suggestion() {
     }
 
     // If no errors, clear errors and show success alert
-    setError({ name: "", email: "", phone: "", message: "" });
-    alert("Form submitted successfully!");
+    setError({ name: "", email: "", phone: "", city: "" ,address:"",});
+    alert("Your details have been saved successfully! ✅");
     console.log("Form submitted:", dataForm);
 
     // Reset form
@@ -56,7 +63,8 @@ export default function Suggestion() {
       name: "",
       email: "",
       phone: "",
-      message: "",
+      city: "",
+      address:"",
     });
   };
 
@@ -79,12 +87,12 @@ export default function Suggestion() {
   return (
     <form onSubmit={handleSubmit}>
       <div>
-        <h1 className="text-red-700 mt-10 text-center font-sans font-bold md:text-4xl text-2xl">
-          Suggestion Form
+        <h1 className="text-red-700 mt-14 text-center font-sans font-bold md:text-4xl text-2xl">
+          Delivery Details
         </h1>
       </div>
-      <div className="w-full md:px-12">
-        <h1 className="font-bold mt-10 px-16 pt-6 text-2xl">Tell us about yourself</h1>
+      <div className="w-full md:px-12 my-10">
+       
         <div className="px-16 pt-10">
           <label htmlFor="name" className="text-md font-semibold">
             Name
@@ -127,24 +135,34 @@ export default function Suggestion() {
           />
           {error.phone && <p className="pt-2 text-red-500">{error.phone}</p>}
         </div>
-        <div className="m-5 p-4">
-          <h1 className="font-bold px-6 pt-6 text-2xl">Give us feedback</h1>
-        </div>
-        <div className="px-16">
-          <label htmlFor="message" className="text-md font-semibold">
-            Feedback
+         <div className="px-16 pt-10">
+          <label htmlFor="name" className="text-md font-semibold">
+            City
           </label>
-          <textarea
-            name="message"
-            value={dataForm.message}
+          <input
+            type="text"
+            name="city"
+            value={dataForm.city}
             onChange={handleChange}
-            placeholder="* Write your feedback here..."
-            spellCheck={false}
+            placeholder="* Enter Your City"
             className="w-full border-b pt-4 focus:ring-0 focus:outline-none p-2"
           />
-          {error.message && <p className="pt-2 text-red-500">{error.message}</p>}
+          {error.city && <p className="pt-2 text-red-500">{error.city}</p>}
         </div>
-      
+        <div className="px-16 pt-10">
+          <label htmlFor="name" className="text-md font-semibold">
+            Address
+          </label>
+          <input
+            type="text"
+            name="address"
+            value={dataForm.address}
+            onChange={handleChange}
+            placeholder="* Enter Your Address"
+            className="w-full border-b pt-4 focus:ring-0 focus:outline-none p-2"
+          />
+          {error.address && <p className="pt-2 text-red-500">{error.address}</p>}
+        </div>
       <div className="flex justify-center items-center my-16">
         <button
           type="submit"
@@ -157,3 +175,4 @@ export default function Suggestion() {
     </form>
   );
 }
+
