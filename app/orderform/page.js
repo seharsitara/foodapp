@@ -1,8 +1,10 @@
 "use client";
 import { useState } from "react";
 import React from "react";
+import { useRouter } from "next/navigation";
 
 export default function Complaint() {
+  const router=useRouter();
   const [dataForm, setDataForm] = useState({
     name: "",
     email: "",
@@ -23,6 +25,7 @@ export default function Complaint() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+
     // Validation logic
     const newErrors = {};
 
@@ -39,9 +42,10 @@ export default function Complaint() {
       newErrors.phone = "Please enter a valid phone number.";
     }
 
-    if (!dataForm.city.toLowerCase().includes("lahore","Islamabad","karachi")){
-      newErrors.city="please enter valid city"
-    }
+    const allowedCities = ["lahore", "islamabad", "karachi"];
+    if (!allowedCities.includes(dataForm.city.toLowerCase())) {
+      newErrors.city = "Please enter a valid city"
+      }
    
     if (!dataForm.address || dataForm.address.length < 10) {
       newErrors.address = "Please enter a valid address.";
@@ -66,6 +70,9 @@ export default function Complaint() {
       city: "",
       address:"",
     });
+
+   localStorage.setItem("deliveryDetails",JSON.stringify(dataForm));
+    router.push("/menu");
   };
 
   const handleChange = (e) => {

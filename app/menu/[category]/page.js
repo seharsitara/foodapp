@@ -1,6 +1,7 @@
 'use client';
+import { useRouter } from "next/navigation";
 import { use } from "react";
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -52,6 +53,7 @@ import ChocolateFrappe from "@/assets/coffee/ChocolateFrappe.png.jpg";
 import ColdCoffee from "@/assets/coffee/ColdCoffee.png.jpg";
 import deal1 from "@/assets/deal/deal1.png.jpg"
 import deal3 from "@/assets/deal/deal3.png.jpg"
+import { jsxs } from "react/jsx-runtime";
 
 
 const menuData = {
@@ -364,17 +366,89 @@ const fullMenu = [
   
 
   export default function MenuPage({ params: paramsPromise }) {
+    const router=useRouter()
     const params = use(paramsPromise); // Unwrap the params promise
     const category = params.category?.toLowerCase();
 
   const [showFullMenu, setShowFullMenu] = useState(false);
+  const [addToCard,setAddToCard]=useState({})
+  
+  
   const items = menuData[category];
+  const [prices, setPrices] = useState(() =>
+    items.reduce((acc, item) => ({ ...acc, [item.name]: item.price }), {})
+  );
 
   if (!items) {
     return <p className="p-6 text-center text-red-500 font-bold">Category not found.</p>;
   }
+  const handleAddToCard=(item)=>{
+    const details=localStorage.getItem("deliveryDetails")
+    console.log(details)
+    if (details) {
+      // Get previous items from localStorage
+      const previousCart = JSON.parse(localStorage.getItem("cardItems")) || {};
   
+      // Update state properly
+      const updatedCart = {
+        ...previousCart, // Keep existing items
+        [item.name]: (previousCart[item.name] || 0) + 1, // Increment the count
+      };
+  
+      setAddToCard(updatedCart);
+  
+      // Save updated cart in localStorage
+      localStorage.setItem("cardItems", JSON.stringify(updatedCart));
+  
+      // Handle prices separately
+      const previousPrices = JSON.parse(localStorage.getItem("priceofItems")) || {};
+      const updatedPrices = {
+        ...previousPrices,
+        [item.name]: previousPrices[item.name] !== undefined ? previousPrices[item.name] + item.price : item.price, // First click sets original price
+      };
+  
+      setPrices(updatedPrices);
+      localStorage.setItem("priceofItems", JSON.stringify(updatedPrices));
+      
+    }
+    else{
+      router.push("/orderform")
+    }
+  }
+  const [totalQuantity, setTotalQuantity] = useState(0);
+const [totalPrice, setTotalPrice] = useState(0);
+
+useEffect(() => {
+  const storedCart = JSON.parse(localStorage.getItem("cardItems")) || {};
+  const storedPrices = JSON.parse(localStorage.getItem("priceofItems")) || {};
+
+  // Calculate total quantity
+  const totalQty = Object.values(storedCart).reduce((sum, qty) => sum + qty, 0);
+  setTotalQuantity(totalQty);
+
+  // Calculate total price
+  const totalPriceSum = Object.values(storedPrices).reduce((sum, price) => sum + price, 0);
+  setTotalPrice(totalPriceSum);
+
+  // 🔥 Store the total values in localStorage
+  localStorage.setItem("totalQuantity", JSON.stringify(totalQty));
+  localStorage.setItem("totalPrice", JSON.stringify(totalPriceSum));
+
+}, [addToCard, prices]); // Runs whenever cart or prices change
+
+// 🔥 Load total values from localStorage on page refresh
+useEffect(() => {
+  const savedQuantity = JSON.parse(localStorage.getItem("totalQuantity")) || 0;
+  const savedPrice = JSON.parse(localStorage.getItem("totalPrice")) || 0;
+  
+  setTotalQuantity(savedQuantity);
+  setTotalPrice(savedPrice);
+}, []); // Runs only on the first render
+
+
+
   return (
+    <div>
     <div className="w-full mb-16 flex flex-col md:flex-row">
       {/* Sidebar for Large Screens */}
       <div className="hidden md:block w-1/3 lg:w-1/5  items-center bg-white py-6  border-2 border-gray-300 mt-10 ml-14 ">
@@ -430,13 +504,24 @@ const fullMenu = [
               <Image src={item.image} alt={item.name} width={150} height={120} className="rounded-lg mb-4" />
               <h3 className="text-xl font-semibold text-center"><Link href={`/menu/${category}/${item.id}`}>{item.name}</Link></h3>
               <div className="flex justify-between md:gap-6 lg:gap-0 w-full mt-10">
-              <p className="lg:text-lg text-sm font-semibold text-gray-700 mt-2">PKR {item.price}</p>
-              <button className="bg-yellow-600 px-4 py-2 rounded-lg"><Link href="/orderform">Add To Basket</Link></button>
+              <p className="lg:text-lg text-sm font-semibold text-gray-700 mt-2">PKR {item.price}
+              </p>
+              <button className="bg-yellow-600 px-4 py-2 rounded-lg"
+              onClick={()=>handleAddToCard(item)}>Add To Basket</button>
+              
               </div>
               </div>
           ))}
+          
+              
         </div>
       </div>
+      
+    </div>
+    <div className="bg-yellow-600 rounded-md flex justify-around py-6 text-white font-sans">
+              <p>Total Items:{totalQuantity}</p>
+              <p>Total Price: PKR {totalPrice}</p>
+              </div>
     </div>
   );
 }
