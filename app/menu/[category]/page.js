@@ -371,18 +371,76 @@ const fullMenu = [
     const category = params.category?.toLowerCase();
 
   const [showFullMenu, setShowFullMenu] = useState(false);
-  const [addToCard,setAddToCard]=useState({})
+  const [cart, setCart] = useState([]);
+  const [totalQuantity, setTotalQuantity] = useState(0);
+  const [totalPrice, setTotalPrice] = useState(0);
   
   
   const items = menuData[category];
-  const [prices, setPrices] = useState(() =>
+  /*const [prices, setPrices] = useState(() =>
     items.reduce((acc, item) => ({ ...acc, [item.name]: item.price }), {})
-  );
+  );*/
 
   if (!items) {
     return <p className="p-6 text-center text-red-500 font-bold">Category not found.</p>;
   }
-  const handleAddToCard=(item)=>{
+    
+  useEffect(() => {
+    const storedCart = JSON.parse(localStorage.getItem("cartItems")) || [];
+    setCart(storedCart);
+
+    // Calculate totals
+    const totalQty = storedCart.reduce((sum, item) => sum + item.quantity, 0);
+    const totalPriceSum = storedCart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+    setTotalQuantity(totalQty);
+    setTotalPrice(totalPriceSum);
+  }, []);
+
+  const handleAddToCart = (item) => {
+    const details = localStorage.getItem("deliveryDetails");
+
+    if (!details) {
+      router.push("/orderform");
+      return;
+    }
+
+    // Get previous cart from localStorage
+    let updatedCart = [...cart];
+
+    // Check if item is already in cart
+    const existingItemIndex = updatedCart.findIndex(cartItem => cartItem.name === item.name);
+
+    if (existingItemIndex !== -1) {
+      // Update quantity and price of existing item
+      updatedCart[existingItemIndex].quantity += 1;
+    } else {
+      // Add new item to cart
+      updatedCart.push({
+        name: item.name,
+        price: item.price,
+        quantity: 1,
+        image: item.image.src || item.image,// Ensure image is stored
+      });
+    }
+
+    // Save updated cart to state and localStorage
+    setCart(updatedCart);
+    localStorage.setItem("cartItems", JSON.stringify(updatedCart));
+
+    // Update totals
+    const totalQty = updatedCart.reduce((sum, cartItem) => sum + cartItem.quantity, 0);
+    const totalPriceSum = updatedCart.reduce((sum, cartItem) => sum + cartItem.price * cartItem.quantity, 0);
+
+    setTotalQuantity(totalQty);
+    localStorage.setItem("totalQuantity", JSON.stringify(totalQty));
+    setTotalPrice(totalPriceSum);
+    localStorage.setItem("totalPrice", JSON.stringify(totalPriceSum));
+
+
+
+  }
+  /*const handleAddToCard=(item)=>{
     const details=localStorage.getItem("deliveryDetails")
     console.log(details)
     if (details) {
@@ -422,34 +480,34 @@ useEffect(() => {
   const storedCart = JSON.parse(localStorage.getItem("cardItems")) || {};
   const storedPrices = JSON.parse(localStorage.getItem("priceofItems")) || {};
 
-  // Calculate total quantity
+  
   const totalQty = Object.values(storedCart).reduce((sum, qty) => sum + qty, 0);
   setTotalQuantity(totalQty);
 
-  // Calculate total price
+  
   const totalPriceSum = Object.values(storedPrices).reduce((sum, price) => sum + price, 0);
   setTotalPrice(totalPriceSum);
 
-  // 🔥 Store the total values in localStorage
+  
   localStorage.setItem("totalQuantity", JSON.stringify(totalQty));
   localStorage.setItem("totalPrice", JSON.stringify(totalPriceSum));
 
-}, [addToCard, prices]); // Runs whenever cart or prices change
+}, [addToCard, prices]); 
 
-// 🔥 Load total values from localStorage on page refresh
+
 useEffect(() => {
   const savedQuantity = JSON.parse(localStorage.getItem("totalQuantity")) || 0;
   const savedPrice = JSON.parse(localStorage.getItem("totalPrice")) || 0;
   
   setTotalQuantity(savedQuantity);
   setTotalPrice(savedPrice);
-}, []); // Runs only on the first render
+}, []); // Runs only on the first render*/
 
 
 
   return (
     <div>
-    <div className="w-full mb-16 flex flex-col md:flex-row">
+    <div className="w-full mb-20  flex flex-col md:flex-row">
       {/* Sidebar for Large Screens */}
       <div className="hidden md:block w-1/3 lg:w-1/5  items-center bg-white py-6  border-2 border-gray-300 mt-10 ml-14 ">
       <div className="flex flex-col justify-center items-center">
@@ -507,7 +565,7 @@ useEffect(() => {
               <p className="lg:text-lg text-sm font-semibold text-gray-700 mt-2">PKR {item.price}
               </p>
               <button className="bg-yellow-600 px-4 py-2 rounded-lg"
-              onClick={()=>handleAddToCard(item)}>Add To Basket</button>
+              onClick={()=>handleAddToCart(item)}>Add To Basket</button>
               
               </div>
               </div>
@@ -516,13 +574,23 @@ useEffect(() => {
               
         </div>
       </div>
-      
-    </div>
-    <div className="bg-yellow-600 rounded-md flex justify-around py-6 text-white font-sans">
-              <p>Total Items:{totalQuantity}</p>
-              <p>Total Price: PKR {totalPrice}</p>
+      </div>
+    
+    <div className="w-full bg-yellow-600 rounded-t-md flex justify-around md:py-4 py-6 text-white font-sans fixed bottom-0 ">
+            <div className="flex justify-center md:gap-5 gap-2 items-center text-2xl">
+              <div className="bg-red-700 rounded-full md:w-16 md:h-16 text-center md:pt-4 w-12 h-12 pt-2">
+              <p >{totalQuantity}</p>
               </div>
-    </div>
+              <p className="font-sans font-semibold  md:text-2xl text-xl">Rs {totalPrice}</p>
+              </div>
+              <div>
+                <Link href="/viewcard"><button className="bg-red-700 lg:py-4 lg:px-12 md:p-4 p-3 rounded-lg font-sans md:text-xl text-md">View Cart</button></Link>
+                
+              </div>
+              </div>
+              </div>
+    
+   
   );
 }
   
