@@ -509,19 +509,21 @@ useEffect(() => {
     <div>
     <div className="w-full mb-20  flex flex-col md:flex-row">
       {/* Sidebar for Large Screens */}
-      <div className="hidden md:block w-1/3 lg:w-1/5  items-center bg-white py-6  border-2 border-gray-300 mt-10 ml-14 ">
+      <div className="hidden md:block w-1/3 lg:w-1/5  bg-red-700 items-center py-6 rounded-lg mt-10 ml-14 ">
       <div className="flex flex-col justify-center items-center">
-        <h2 className="text-center md:text-xl text-3xl font-semibold text-red-700">Full Menu</h2>
-        <ul className="space-y-4 mt-6">
+        <h2 className="text-center md:text-xl text-3xl font-semibold text-white">Full Menu</h2>
+        <div className="flex items-center justify-center w-full px-10 py-6">
+        <ul className="space-y-4 mt-6 w-full text-center">
           {fullMenu.map((item, index) => (
-            <li key={index} className="flex items-center space-x-4">
+            <li key={index} className="flex items-center justify-center space-x-4 shadow-lg py-4 gap-3">
               <Image src={item.image} alt={item.name} width={50} height={50} className="rounded-full" />
-              <Link href={item.link} className="text-lg font-medium text-black hover:text-red-500">
+              <Link href={item.link} className="text-lg font-medium text-white hover:text-red-500">
                 {item.name}
               </Link>
             </li>
           ))}
         </ul>
+        </div>
       </div>
       </div>
       {/* Toggle Button for Small Screens */}
@@ -535,18 +537,20 @@ useEffect(() => {
 
       {/* Full Menu for Small Screens */}
       {showFullMenu && (
-        <div className="w-3/4 sm:w-1/4 block md:hidden bg-white mx-auto border-2 py-5 border-gray-300 mt-6">
-          <h2 className="text-center text-2xl font-semibold mb-6 text-red-700">Full Menu</h2>
-          <ul className="space-y-4 text-center">
-            {fullMenu.map((item, index) => (
-              <li key={index} className="flex items-center space-x-4 justify-center">
-                <Image src={item.image} alt={item.name} width={80} height={80} className="rounded-full" />
-                <Link href={item.link} className="text-lg font-medium text-blue-600 hover:text-blue-500">
-                  {item.name}
-                </Link>
-              </li>
-            ))}
-          </ul>
+        <div className="w-3/4 sm:w-1/4 block md:hidden bg-red-700 mx-auto py-5 rounded-lg mt-6">
+          <h2 className="text-center text-2xl font-semibold mb-6 text-white">Full Menu</h2>
+          <div className="flex items-center justify-center w-full px-10 py-4">
+        <ul className="space-y-4 w-full text-center">
+          {fullMenu.map((item, index) => (
+            <li key={index} className="flex items-center justify-center space-x-4 shadow-lg py-4 gap-3">
+              <Image src={item.image} alt={item.name} width={50} height={50} className="rounded-full" />
+              <Link href={item.link} className="text-lg font-medium text-white hover:text-red-500">
+                {item.name}
+              </Link>
+            </li>
+          ))}
+        </ul>
+        </div>
         </div>
       )}
 
@@ -584,7 +588,7 @@ useEffect(() => {
               <p className="font-sans font-semibold  md:text-2xl text-xl">Rs {totalPrice}</p>
               </div>
               <div>
-                <Link href="/viewcard"><button className="bg-red-700 lg:py-4 lg:px-12 md:p-4 p-3 rounded-lg font-sans md:text-xl text-md">View Cart</button></Link>
+                <Link href="/viewcart"><button className="bg-red-700 lg:py-4 lg:px-12 md:p-4 p-3 rounded-lg font-sans md:text-xl text-md">View Cart</button></Link>
                 
               </div>
               </div>
