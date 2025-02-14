@@ -593,7 +593,7 @@ useEffect(() => {
               </div>
               </div>
               </div>*/}
-  <div className="flex flex-row items-center justify-around space-y-4 p-4 bg-white shadow-lg rounded-xl w-full md:w-auto">
+  <div className="flex flex-row items-center  md:justify-around justify-between space-y-4 p-4 bg-white shadow-lg rounded-xl w-full md:w-auto">
   <div className="flex items-center space-x-4">
     {/* Quantity Display */}
     <div className="relative">
@@ -614,7 +614,7 @@ useEffect(() => {
 
   {/* View Cart Button */}
   <Link href="/viewcart">
-    <button className="flex items-center justify-center bg-red-700 text-white hover:bg-red-800 transition-all duration-300 ease-in-out px-6 py-3 rounded-full font-semibold shadow-md w-full">
+    <button className="flex items-center justify-center bg-red-700 text-white hover:bg-red-800 transition-all duration-300 ease-in-out md:px-6 px-4 py-3 rounded-full font-semibold shadow-md w-full">
       🛒 View Cart
     </button>
   </Link>
