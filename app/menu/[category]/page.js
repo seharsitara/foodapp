@@ -580,20 +580,47 @@ useEffect(() => {
       </div>
       </div>
     
-    <div className="w-full bg-yellow-600 rounded-t-md flex justify-around md:py-4 py-6 text-white font-sans fixed bottom-0 ">
-            <div className="flex justify-center md:gap-5 gap-2 items-center text-2xl">
+    {/*<div className="w-full bg-yellow-600 rounded-t-md flex justify-around md:py-4 py-6 text-white font-sans fixed bottom-0 ">
+            <div className="flex justify-center md:gap-3 gap-2 items-center text-2xl">
               <div className="bg-red-700 rounded-full md:w-16 md:h-16 text-center md:pt-4 w-12 h-12 pt-2">
               <p >{totalQuantity}</p>
               </div>
-              <p className="font-sans font-semibold  md:text-2xl text-xl">Rs {totalPrice}</p>
+              <p className="font-sans font-semibold  md:text-2xl text-xl">Rs{totalPrice}</p>
               </div>
               <div>
                 <Link href="/viewcart"><button className="bg-red-700 lg:py-4 lg:px-12 md:p-4 p-3 rounded-lg font-sans md:text-xl text-md">View Cart</button></Link>
                 
               </div>
               </div>
-              </div>
-    
+              </div>*/}
+  <div className="flex flex-row items-center justify-around space-y-4 p-4 bg-white shadow-lg rounded-xl w-full md:w-auto">
+  <div className="flex items-center space-x-4">
+    {/* Quantity Display */}
+    <div className="relative">
+      <div className="bg-red-700 text-white rounded-full flex items-center justify-center w-14 h-14 md:w-16 md:h-16 shadow-lg">
+        <p className="text-xl md:text-2xl font-bold">{totalQuantity}</p>
+      </div>
+      <span className="absolute -top-1 -right-1 bg-white text-red-700 text-xs font-semibold px-2 py-1 rounded-full shadow">
+        Items
+      </span>
+    </div>
+
+    {/* Total Price */}
+    <div className="flex flex-col text-center">
+      <p className="text-gray-600 text-sm md:text-md">Total Price</p>
+      <p className="font-bold text-lg md:text-2xl text-gray-900">Rs {totalPrice}</p>
+    </div>
+  </div>
+
+  {/* View Cart Button */}
+  <Link href="/viewcart">
+    <button className="flex items-center justify-center bg-red-700 text-white hover:bg-red-800 transition-all duration-300 ease-in-out px-6 py-3 rounded-full font-semibold shadow-md w-full">
+      🛒 View Cart
+    </button>
+  </Link>
+</div>
+
+    </div>
    
   );
 }

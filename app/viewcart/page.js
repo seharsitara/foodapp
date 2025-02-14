@@ -83,12 +83,12 @@ export default function ViewCart() {
       ) : (
         <div className="max-w-4xl mx-auto bg-white shadow-lg p-6 rounded-lg">
           {cart.map((item, index) => (
-            <div key={index} className="flex items-center justify-between border-b py-4">
-              <div className="flex-col md:flex md:items-center space-x-4 ">
-                <div className="flex items-center justify-center">
+            <div key={index} className="flex items-center justify-between gap-6 border-b py-4">
+              <div className="flex-col items-start md:space-x-6 w-36 md:w-64">
+                <div className="md:ml-10">
                 <img src={item.image} alt={item.name} width={80} height={80} className="rounded-lg" />
                 </div>
-                <div>
+                <div >
                   <h3 className="text-xl font-semibold">{item.name}</h3>
                   <p className="text-gray-600">Price: PKR {item.price}</p>
                   <p className="text-gray-600">Quantity: {item.quantity}</p>

@@ -12,11 +12,11 @@ import slideshowimg5 from "@/assets/slideshow/slideshowimg5.png.jpg"
 import slideshowimg6 from "@/assets/slideshow/slideshowimg6.png.jpg"
 export default function ImageSlideShow(){
   const imgSlideShowItems = [
-      {image: slideshowimg3.src, header:"Explore Our Delicious Burger Range ",para:"Discover our mouthwatering burger range, featuring fresh ingredients and bold flavors, crafted to satisfy every craving." },
-      {image: slideshowimg4.src, header:"Delicious Cup Cake",para:"Savor the sweet perfection of our freshly made cup cake, a treat you’ll love in every bite." },
-      {image: slideshowimg5.src, header:"Creamy Strawberry Ice Cream",para:"Enjoy the rich, fruity flavor of our creamy strawberry ice cream, a delightful treat for every occasion." },
-      {image: slideshowimg6.src, header:"Rich & Aromatic Coffee",para:"Savor the perfect cup of rich, aromatic coffee to energize your day." },
-      {image: slideshowimg2.src, header:"Delicious Chow Burger",para:"Indulge in the mouthwatering taste of our juicy and flavorful Chow Burger." },
+      {image: slideshowimg3.src, header:"Explore Our Delicious Burger Range ",para:"Discover our mouthwatering burger range, featuring fresh ingredients and bold flavors, crafted to satisfy every craving.",link:"/menu/burgers" },
+      {image: slideshowimg4.src, header:"Delicious Cup Cake",para:"Savor the sweet perfection of our freshly made cup cake, a treat you’ll love in every bite.",link:"/menu/desserts" },
+      {image: slideshowimg5.src, header:"Creamy Strawberry Ice Cream",para:"Enjoy the rich, fruity flavor of our creamy strawberry ice cream, a delightful treat for every occasion.",link:"/menu/desserts" },
+      {image: slideshowimg6.src, header:"Rich & Aromatic Coffee",para:"Savor the perfect cup of rich, aromatic coffee to energize your day.",link:"/menu/coffee" },
+      {image: slideshowimg2.src, header:"Delicious Chow Burger",para:"Indulge in the mouthwatering taste of our juicy and flavorful Chow Burger.",link:"/menu/burgers" },
       
       
     ];
@@ -54,7 +54,7 @@ export default function ImageSlideShow(){
                 {slide.header}
               </h2>
               <p className="text-sm sm:text-base md:text-lg">{slide.para}</p>
-              <button className="mt-4 bg-yellow-600 text-black p-3 rounded-md"><Link href="/">Order Now</Link></button>
+              <button className="mt-4 bg-yellow-600 text-black p-3 rounded-md"><Link href={slide.link}>Order Now</Link></button>
             </div>
           </div>
         ))}

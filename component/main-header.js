@@ -1,5 +1,6 @@
 "use client";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import Link from "next/link";
 import foodlogo from "@/assets/foodlogo.png";
@@ -32,10 +33,10 @@ export default function Navbar() {
 
                 {/* Toggle Button for Medium and Smaller Screens */}
                 <button
-                    className="md:hidden p-1 text-sm bg-red-700 rounded"
+                    className="md:hidden p-1 text-sm rounded"
                     onClick={toggleMenu}
                 >
-                    {isOpen ? "Close" : "Menu"}
+                     <FontAwesomeIcon icon={isOpen ? faTimes : faBars} size="2x" />
                 </button>
 
                 {/* Navigation Links */}
