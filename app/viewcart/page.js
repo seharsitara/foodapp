@@ -1,7 +1,9 @@
 "use client"
 import { useState, useEffect } from "react";
+import Router, { useRouter } from "next/navigation";
 
 export default function ViewCart() {
+  const router=useRouter();
   const [cart, setCart] = useState([]);
   const [totalQuantity, setTotalQuantity] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
@@ -10,6 +12,7 @@ export default function ViewCart() {
   useEffect(() => {
     const storedCart = JSON.parse(localStorage.getItem("cartItems")) || [];
     setCart(storedCart);
+    
 
     // Calculate totals
     const totalQty = storedCart.reduce((sum, item) => sum + item.quantity, 0);
@@ -19,10 +22,12 @@ export default function ViewCart() {
     setTotalPrice(totalPriceSum);
   }, []);
 
+  
   // Remove item from cart
   const handleRemoveItem = (itemToRemove) => {
     // Find the item in the cart and reduce its quantity
     let updatedCart = [...cart];
+    
     const itemIndex = updatedCart.findIndex((item) => item.name === itemToRemove.name);
     
     if (itemIndex !== -1) {
@@ -73,6 +78,17 @@ export default function ViewCart() {
     setTotalPrice(totalPriceSum);
   };
     
+  const handleConfirmBtn=()=>{
+    alert("Your Order has been Confirmed")
+    localStorage.removeItem("cartItems");
+    localStorage.removeItem("deliveryDetails")
+    router.push("/menu") // Clear local storage
+    /*setCart([]); // Clear state
+    setTotalQuantity(0);
+    setTotalPrice(0);*/
+   
+    
+ }
 
   return (
     <div className="min-h-screen p-6 mt-6">
@@ -115,8 +131,9 @@ export default function ViewCart() {
           <div className="mt-6 text-right">
             <p className="text-lg font-bold">Total Items: {totalQuantity}</p>
             <p className="text-lg font-bold">Total Price: PKR {totalPrice}</p>
-            <button className="mt-4 px-6 py-3 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700">
-              Proceed to Checkout
+            <button onClick={handleConfirmBtn}
+            className="mt-4 px-6 py-3 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700">
+              Submit Order
             </button>
           </div>
         </div>
