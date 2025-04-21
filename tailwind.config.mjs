@@ -6,6 +6,8 @@ export default {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "./component/**/*.{js,ts,jsx,tsx,mdx}",
     "./assets/**/*.{js,ts,jsx,tsx,mdx}",
+    "./lib/**/*.{js,ts,jsx,tsx,mdx}",
+
   ],
   theme: {
     extend: {

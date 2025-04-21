@@ -44,7 +44,7 @@ export default function ImageSlideShow(){
               alt={slide.header}
               layout="responsive"
               width={16}
-              height={3} // Maintains 16:9 aspect ratio
+              height={9} // Maintains 16:9 aspect ratio
               className="rounded-lg object-cover"
             />
     
