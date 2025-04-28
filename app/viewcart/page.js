@@ -1,15 +1,20 @@
 "use client"
 import { useState, useEffect } from "react";
 import Router, { useRouter } from "next/navigation";
+import { useCart } from "@/context/cartContext";
 
 export default function ViewCart() {
   const router=useRouter();
   const [cart, setCart] = useState([]);
-  const [totalQuantity, setTotalQuantity] = useState(0);
-  const [totalPrice, setTotalPrice] = useState(0);
+  //const [totalQuantity, setTotalQuantity] = useState(0);
+  //const [totalPrice, setTotalPrice] = useState(0);
+
+  const {loading,updateCartItems,removeFromCart,cartItems }=useCart();
+
+
 
   // Load cart from localStorage
-  useEffect(() => {
+  /*useEffect(() => {
     const storedCart = JSON.parse(localStorage.getItem("cartItems")) || [];
     setCart(storedCart);
     
@@ -20,13 +25,20 @@ export default function ViewCart() {
 
     setTotalQuantity(totalQty);
     setTotalPrice(totalPriceSum);
-  }, []);
+  }, []);*/
 
   
   // Remove item from cart
-  const handleRemoveItem = (itemToRemove) => {
+  const handleRemoveItem = (item) => {
     // Find the item in the cart and reduce its quantity
-    let updatedCart = [...cart];
+    if(item.quantity <= 1){
+      removeFromCart(item.item_id)
+    }
+   else{
+     updateCartItems(item.item_id, item.quantity - 1 );
+    }
+    
+   /* let updatedCart = [...cart];
     
     const itemIndex = updatedCart.findIndex((item) => item.name === itemToRemove.name);
     
@@ -51,11 +63,17 @@ export default function ViewCart() {
     const totalPriceSum = updatedCart.reduce((sum, item) => sum + item.price * item.quantity, 0);
   
     setTotalQuantity(totalQty);
-    setTotalPrice(totalPriceSum);
+    setTotalPrice(totalPriceSum);*/
   };
-  const handleAddItemBack = (itemToAdd) => {
+
+
+  const handleAddItemBack = (item) => {
     // Check if the item already exists in the cart
-    let updatedCart = [...cart];
+    console.log("Adding item back to cart:", item);
+    console.log("Item ID:", item.item_id);
+    console.log("Item properties:", Object.keys(item));
+    updateCartItems(item.item_id, item.quantity + 1);
+ /*   let updatedCart = [...cart];
     const existingItem = updatedCart.find((item) => item.name === itemToAdd.name);
   
     if (existingItem) {
@@ -77,7 +95,20 @@ export default function ViewCart() {
     setTotalQuantity(totalQty);
     setTotalPrice(totalPriceSum);
   };
-    
+    */
+
+
+  }
+
+  const totalQuantity = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+  
+  const totalPrice = cartItems.reduce((sum, item) => {
+    const price = Number(item.price) || 0;
+    const quantity = item.quantity || 0;
+    return sum + (price * quantity);
+  }, 0);
+
+
   const handleConfirmBtn=()=>{
     alert("Your Order has been Confirmed")
     localStorage.removeItem("cartItems");
@@ -94,15 +125,15 @@ export default function ViewCart() {
     <div className="min-h-screen p-6 mt-6">
       <h1 className="text-center text-3xl font-bold text-red-700 mb-6">Your Cart</h1>
 
-      {cart.length === 0 ? (
+      {cartItems.length === 0 ? (
         <p className="text-center text-xl text-gray-500">Your cart is empty.</p>
       ) : (
         <div className="max-w-4xl mx-auto bg-white shadow-lg p-6 rounded-lg">
-          {cart.map((item, index) => (
+          {cartItems.map((item, index) => (
             <div key={index} className="flex items-center justify-between gap-6 border-b py-4">
               <div className="flex-col items-start md:space-x-6 w-36 md:w-64">
                 <div className="md:ml-10">
-                <img src={item.image} alt={item.name} width={80} height={80} className="rounded-lg" />
+                <img src={item.image_url} alt={item.name} width={80} height={80} className="rounded-lg" />
                 </div>
                 <div >
                   <h3 className="text-xl font-semibold">{item.name}</h3>

@@ -4,6 +4,7 @@ import Cards from "@/component/cards";
 import {AuthProvider} from "@/context/authContext";
 import Login from "@/lib/auth/login";
 import { useAuth } from "@/context/authContext";
+import { CartProvider } from "@/context/cartContext";
 
 export default function Home() {
   const {user}=useAuth();
@@ -28,4 +29,5 @@ export default function Home() {
 
   );
 }
+
 

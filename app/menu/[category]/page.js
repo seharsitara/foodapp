@@ -1,4 +1,5 @@
 'use client';
+import { useCart } from "@/context/cartContext";
 import { useRouter } from "next/navigation";
 import { use } from "react";
 import { useState,useEffect } from 'react';
@@ -370,16 +371,33 @@ const fullMenu = [
     const params = use(paramsPromise); // Unwrap the params promise
     const category = params.category?.toLowerCase();
 
+  
+  
+  const items = menuData[category];
+
+
+  const { addToCart , loading , cartItems} = useCart();
+
   const [showFullMenu, setShowFullMenu] = useState(false);
-  const [cart, setCart] = useState([]);
+
+  // Correct way when clicking an item:
+  const handleAddToCart = (newItem) => {
+    addToCart(newItem); // USE the function from useCart
+  };
+  
+  // Calculate totals from cartItems (from useCart)
+  const totalQuantity = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+  
+  const totalPrice = cartItems.reduce((sum, item) => {
+    const price = Number(item.price) || 0;
+    const quantity = item.quantity || 0;
+    return sum + (price * quantity);
+  }, 0);
+  /*const [cart, setCart] = useState([]);
   const [totalQuantity, setTotalQuantity] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
   
   
-  const items = menuData[category];
-  /*const [prices, setPrices] = useState(() =>
-    items.reduce((acc, item) => ({ ...acc, [item.name]: item.price }), {})
-  );*/
 
   if (!items) {
     return <p className="p-6 text-center text-red-500 font-bold">Category not found.</p>;
@@ -440,76 +458,14 @@ const fullMenu = [
 
 
   }
-  /*const handleAddToCard=(item)=>{
-    const details=localStorage.getItem("deliveryDetails")
-    console.log(details)
-    if (details) {
-      // Get previous items from localStorage
-      const previousCart = JSON.parse(localStorage.getItem("cardItems")) || {};
   
-      // Update state properly
-      const updatedCart = {
-        ...previousCart, // Keep existing items
-        [item.name]: (previousCart[item.name] || 0) + 1, // Increment the count
-      };
-  
-      setAddToCard(updatedCart);
-  
-      // Save updated cart in localStorage
-      localStorage.setItem("cardItems", JSON.stringify(updatedCart));
-  
-      // Handle prices separately
-      const previousPrices = JSON.parse(localStorage.getItem("priceofItems")) || {};
-      const updatedPrices = {
-        ...previousPrices,
-        [item.name]: previousPrices[item.name] !== undefined ? previousPrices[item.name] + item.price : item.price, // First click sets original price
-      };
-  
-      setPrices(updatedPrices);
-      localStorage.setItem("priceofItems", JSON.stringify(updatedPrices));
-      
-    }
-    else{
-      router.push("/orderform")
-    }
-  }
-  const [totalQuantity, setTotalQuantity] = useState(0);
-const [totalPrice, setTotalPrice] = useState(0);
-
-useEffect(() => {
-  const storedCart = JSON.parse(localStorage.getItem("cardItems")) || {};
-  const storedPrices = JSON.parse(localStorage.getItem("priceofItems")) || {};
-
-  
-  const totalQty = Object.values(storedCart).reduce((sum, qty) => sum + qty, 0);
-  setTotalQuantity(totalQty);
-
-  
-  const totalPriceSum = Object.values(storedPrices).reduce((sum, price) => sum + price, 0);
-  setTotalPrice(totalPriceSum);
-
-  
-  localStorage.setItem("totalQuantity", JSON.stringify(totalQty));
-  localStorage.setItem("totalPrice", JSON.stringify(totalPriceSum));
-
-}, [addToCard, prices]); 
-
-
-useEffect(() => {
-  const savedQuantity = JSON.parse(localStorage.getItem("totalQuantity")) || 0;
-  const savedPrice = JSON.parse(localStorage.getItem("totalPrice")) || 0;
-  
-  setTotalQuantity(savedQuantity);
-  setTotalPrice(savedPrice);
-}, []); // Runs only on the first render*/
-
-
+*/
 
   return (
     <div>
     <div className="w-full mb-20  flex flex-col md:flex-row">
       {/* Sidebar for Large Screens */}
-      <div className="hidden md:block w-1/3 lg:w-1/5  bg-red-700 items-center py-6 rounded-lg mt-10 ml-14 ">
+      <div className="hidden md:block w-1/2 lg:w-1/3 xl:w-1/5 bg-red-700 items-center py-6 rounded-lg mt-10 ml-14 ">
       <div className="flex flex-col justify-center items-center">
         <h2 className="text-center md:text-xl text-3xl font-semibold text-white">Full Menu</h2>
         <div className="flex items-center justify-center w-full px-10 py-6">
@@ -555,12 +511,12 @@ useEffect(() => {
       )}
 
       {/* Menu Grid */}
-      <div className="w-full lg:w-3/4 px-6">
+      <div className="w-full lg:w-3/4 px-6 md:w-[70%]">
         <h1 className="text-center text-3xl font-semibold text-red-700 mt-12 capitalize">
           {category} Menu
         </h1>
 
-        <div className="grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-8 mt-14 md:px-2 px-6">
+        <div className="grid xl:grid-cols-3 2xl:grid-cols-3 lg:grid-cols-2 sm:grid-cols-1 grid-cols-1 gap-8 mt-14 md:px-2 px-6">
           {items.map((item, index) => (
             <div key={index} className="bg-white shadow-lg rounded-lg p-6 flex flex-col items-center">
               <Image src={item.image} alt={item.name} width={150} height={120} className="rounded-lg mb-4" />
@@ -569,7 +525,7 @@ useEffect(() => {
               <p className="lg:text-lg text-sm font-semibold text-gray-700 mt-2">PKR {item.price}
               </p>
               <button className="bg-yellow-600 px-4 py-2 rounded-lg"
-              onClick={()=>handleAddToCart(item)}>Add To Basket</button>
+              onClick={()=>addToCart(item)}>Add To Basket</button>
               
               </div>
               </div>
