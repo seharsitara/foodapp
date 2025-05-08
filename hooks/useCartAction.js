@@ -14,6 +14,8 @@ export function useCartAction(){
 
   const newItemId = uuidv4();
   console.log("Generated UUID:", newItemId);
+
+  
 const fetchCartItems = useCallback ( async(userId) =>{
    console.log("Fetching cart items for user:", userId);
    const {data , error}= await supabase.from('cart_items').select('*').eq('user_id', userId).order('created_at', { ascending: false });
@@ -99,7 +101,7 @@ const updateCartItems = useCallback(async(itemId,updateitems)=>{
   console.log("updateCartItems called with:", itemId, updateitems);
   const {error} = await supabase.from('cart_items').update(updateitems).eq('item_id', itemId);
   if(error) {
-    console.error("Error updating cart item:", error);
+    console.log("Error updating cart item:", error);
     throw error;
   }
 },[]);
@@ -110,6 +112,7 @@ const removeFromCart = useCallback( async (itemId)=>{
   if (error) throw error;
 
 },[]);
+
 
 return {
   fetchCartItems,

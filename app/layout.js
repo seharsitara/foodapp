@@ -5,6 +5,7 @@ import Footer from "@/component/main-footer";
 import ClientLayout from "@/component/clientLayout";
 import { AuthProvider } from "@/context/authContext";
 import { CartProvider } from "@/context/cartContext";
+import { UserProvider } from "@/context/userContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,9 +31,11 @@ export default function RootLayout({ children }) {
         
         <AuthProvider>
         <CartProvider>
+        <UserProvider>
         <ClientLayout>
          {children}
          </ClientLayout>
+         </UserProvider>
          </CartProvider>
          </AuthProvider>
          

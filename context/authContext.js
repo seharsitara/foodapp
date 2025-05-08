@@ -31,12 +31,19 @@ export function AuthProvider({children}) {
  }
   }, []);*/
   const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+    if (event === 'SIGNED_IN') {
+      console.log('User signed in:', session.user)
+    } else if (event === 'SIGNED_OUT') {
+      console.log('User signed out')
+    }
     setUser(session?.user ?? null);
     setLoading(false);
   });
 
   return () => subscription.unsubscribe();
 }, []);
+
+
 
   const value={
     signUp: async({email,password})=>{
@@ -61,7 +68,7 @@ export function AuthProvider({children}) {
           }
           ,
      signOut: async()=>{
-          await supabase.auth.signUp();
+          await supabase.auth.signOut();
             }
             ,
             user,

@@ -431,16 +431,16 @@ export default function Search(){
 }
   return (
       <>
-      <div>
+      <div className="flex flex-col min-h-screen">
         <div className="mt-20 md:mx-20 mx-10 flex flex-row items-center">
           <input type="search"
           value={searchItem}
           onChange={handleChange}
            placeholder="Do you want to search something?"
-          className="w-full border border-gray-300 p-3 md:p-6 rounded-l-lg focus:outline-none focus:ring-0 md:text-2xl text-xl"></input>
+          className="w-full h-14 border-2 border-yellow-700 px-4 py-3  rounded-l-lg focus:outline-none focus:ring-0 md:text-2xl text-xl "></input>
           <button onClick={handleClick}
-          className="md:h-20 md:w-20 h-14 w-14 flex justify-center items-center bg-yellow-700
-          rounded-r-lg md:p-4 p-1 focus:outline-none focus:ring-0">
+          className="h-14 w-14 flex justify-center items-center bg-yellow-700
+          rounded-r-lg px-2 py-3  focus:outline-none focus:ring-0">
             <Image
             src={searchimg}
             alt="search icon"
@@ -454,10 +454,24 @@ export default function Search(){
         <h1 className="font-sans font-bold md:text-4xl text-2xl md:px-20 px-10 mt-10">Results</h1>
            {filterItems.length > 0 ? (
              filterItems.map((item)=>(
-             <div key={item.id} className="py-10 md:px-20 px-10">
+             <div key={item.id} className="py-6 md:px-20 px-10 flex justify-between">
+              <div className="flex justify-between items-center space-x-4 ">
+              <div className="h-28 w-28">
+              <Image 
+              src={item.image}
+              alt="search icon"
+            layout="responsive"
+            width={16}
+            height={9}
+            className=""
+              ></Image>
+              </div>
+              <div>
               <h1 className="font-sans font-bold md:text-3xl text-xl py-1">{item.name}</h1>
-             <p className="font-sans font-semibold md:text-2xl text-lg py-2">{item.description}</p>
-             <button className="font-sans font-medium md:text-xl text-sm"><Link href={item.link}>{item.buttonText}</Link></button>
+             <p className="font-sans font-semibold md:text-2xl text-lg py-1">{item.description}</p>
+             <button className="font-sans font-normal md:text-xl text-sm"><Link href={item.link}>{item.buttonText}</Link></button>
+             </div>
+             </div>
              </div>
              )
              )

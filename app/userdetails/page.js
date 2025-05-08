@@ -2,29 +2,18 @@
 import { useState } from "react";
 import React from "react";
 import { useRouter } from "next/navigation";
+import { useUserContext } from "@/context/userContext";
+import { userDetailsAaction } from "@/hooks/userDetailsAction";
+import { useAuth } from "@/context/authContext";
 
-export default function Complaint() {
+export default function UserDetails() {
   const router=useRouter();
-  const [dataForm, setDataForm] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    city: "",
-    address:"",
-  });
+  const { dataForm,setDataForm,error,setError}=useUserContext();
+  const {DeliveryDetails} = userDetailsAaction();
+  const {user}=useAuth()
 
-  const [error, setError] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    message: "",
-    city:"",
-    address:"",
-  });
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
 
     // Validation logic
     const newErrors = {};
@@ -57,11 +46,21 @@ export default function Complaint() {
       return;
     }
 
+
+    
+    try {
+      // 2. Submit to Supabase
+      const formWithEmail = {
+        ...dataForm,
+        email: user?.email, // Ensure Supabase auth email is used
+      };
+      const response = await DeliveryDetails(formWithEmail);
+      console.log("User details submitted:", response);
     // If no errors, clear errors and show success alert
-    setError({ name: "", email: "", phone: "", city: "" ,address:"",});
+    setError({});
     alert("Your details have been saved successfully! ✅");
     console.log("Form submitted:", dataForm);
-
+    
     // Reset form
     setDataForm({
       name: "",
@@ -70,10 +69,13 @@ export default function Complaint() {
       city: "",
       address:"",
     });
-
-   localStorage.setItem("deliveryDetails",JSON.stringify(dataForm));
+  
+  // localStorage.setItem("deliveryDetails",JSON.stringify(dataForm));
     router.push("/menu");
-  };
+  }catch(error){
+    console.log("Error submitting details:", error);
+  }
+}
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -90,7 +92,7 @@ export default function Complaint() {
       [name]: "",
     }));
   };
-
+  
   return (
     <form onSubmit={handleSubmit}>
       <div>
@@ -175,7 +177,7 @@ export default function Complaint() {
           type="submit"
           className="bg-yellow-600 p-4 text-xl font-medium rounded-lg"
         >
-          Submit
+          Confirm Payment
         </button>
       </div>
       </div>

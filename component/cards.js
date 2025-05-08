@@ -18,7 +18,7 @@ export default function Cards(){
 
     return(
 
-      <div className="cards grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-14 py-14 mx-10">
+      <div className="cards grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-14 py-8 mx-10">
        {cardItems.map((card,index)=>(
         <div key={index} className="flex flex-col h-50 border border-gray-300 rounded-xl overflow-hidden">
         <Image 

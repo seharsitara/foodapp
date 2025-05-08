@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import Router, { useRouter } from "next/navigation";
 import { useCart } from "@/context/cartContext";
+import Link from "next/link";
 
 export default function ViewCart() {
   const router=useRouter();
@@ -109,17 +110,17 @@ export default function ViewCart() {
   }, 0);
 
 
-  const handleConfirmBtn=()=>{
+  /*const handleConfirmBtn=()=>{
     alert("Your Order has been Confirmed")
     localStorage.removeItem("cartItems");
     localStorage.removeItem("deliveryDetails")
     router.push("/menu") // Clear local storage
     /*setCart([]); // Clear state
     setTotalQuantity(0);
-    setTotalPrice(0);*/
+    setTotalPrice(0);
    
     
- }
+ }*/
 
   return (
     <div className="min-h-screen p-6 mt-6">
@@ -162,10 +163,12 @@ export default function ViewCart() {
           <div className="mt-6 text-right">
             <p className="text-lg font-bold">Total Items: {totalQuantity}</p>
             <p className="text-lg font-bold">Total Price: PKR {totalPrice}</p>
-            <button onClick={handleConfirmBtn}
+          <Link href="/userdetails">
+          <button
             className="mt-4 px-6 py-3 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700">
-              Submit Order
+              Proceed to Checkout
             </button>
+            </Link>
           </div>
         </div>
       )}

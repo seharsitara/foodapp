@@ -34,11 +34,12 @@ export default function ImageSlideShow(){
     };  
   
     return(
-      <div className="w-full my-10">
+      <div className="w-full min-h-screen my-10">
       <Slider {...settings}>
         {imgSlideShowItems.map((slide, index) => (
           <div key={index} className="flex flex-col items-center space-y-4 px-10">
             {/* Image Section */}
+            <div className="w-full">
             <Image
               src={slide.image}
               alt={slide.header}
@@ -47,7 +48,7 @@ export default function ImageSlideShow(){
               height={9} // Maintains 16:9 aspect ratio
               className="rounded-lg object-cover"
             />
-    
+   </div>
             {/* Text Section */}
             <div className="text-start px-4 sm:px-6 md:px-8 lg:px-12">
               <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-2">
